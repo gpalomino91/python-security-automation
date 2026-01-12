@@ -29,6 +29,6 @@ with open('sample.log', 'r',  encoding='utf-8') as file_log:
 if not d1:
   print('No failed logins found.')
 else:
-  print('Failed login attempts by identifier: ')
+  print('Failed login attempts by identifier:')
   for key, value in d1.items():
-    print(f'identifier: {key} Fails: {value} ')
+    print(f'identifier: {key} Fails: {value}')
