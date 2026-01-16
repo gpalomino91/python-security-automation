@@ -40,5 +40,5 @@ def sha256_file(full_path, chunk_size=8192):
                 h.update(chunk)
             return h.hexdigest()
     except (OSError, PermissionError):
-        return None;
+        return None
 
