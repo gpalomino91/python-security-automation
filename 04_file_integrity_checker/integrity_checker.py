@@ -1,11 +1,12 @@
 import os
 import hashlib
+import json
 
 def init():
-    base_dir = 'watched'
+    base_dir = "watched"
 
     if not os.path.isdir(base_dir):
-        print('Directory not found')
+        print("Directory not found")
         return
 
     baseline_data = {}
@@ -20,12 +21,13 @@ def init():
             mtime = os.path.getmtime(full_path)
             sha256 = sha256_file(full_path)
 
-
             baseline_data[rel_path] = {
-                'size': size,
-                'mtime': mtime,
-                'SHA256': sha256
+                "size": size,
+                "mtime": mtime,
+                "sha256": sha256
             }
+    with open("baseline.json", "r", enconding="utf-8") as f:
+        json.dump(baseline_data, indent=2, sort_key=True)
 
 def sha256_file(full_path, chunk_size=8192):
   h = hashlib.sha256()
