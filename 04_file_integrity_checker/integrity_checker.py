@@ -26,16 +26,19 @@ def init():
                 "mtime": mtime,
                 "sha256": sha256
             }
-    with open("baseline.json", "r", enconding="utf-8") as f:
-        json.dump(baseline_data, indent=2, sort_key=True)
+    with open("baseline.json", "w", encoding="utf-8") as f:
+        json.dump(baseline_data, f, indent=2, sort_keys=True)
 
 def sha256_file(full_path, chunk_size=8192):
-  h = hashlib.sha256()
-  with open(full_path, "rb") as f:
-      while True:
-          chunk = f.read(chunk_size)
-          if not chunk:
-              break
-          h.update(chunk)
-  return h.hexdigest()
+    h = hashlib.sha256()
+    try:
+        with open(full_path, "rb") as f:
+            while True:
+                chunk = f.read(chunk_size)
+                if not chunk:
+                    break
+                h.update(chunk)
+            return h.hexdigest()
+    except (OSError, PermissionError):
+        return None;
 
