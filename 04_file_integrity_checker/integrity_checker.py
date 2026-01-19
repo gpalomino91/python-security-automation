@@ -26,7 +26,6 @@ def snapshot_directory(base_dir):
             
     return data
             
-
 def init():
     baseline_data = snapshot_directory("watched")
     if baseline_data is None:
