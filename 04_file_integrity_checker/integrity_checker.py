@@ -60,9 +60,32 @@ def check():
     if current is None:
         return
 
-    baseline_paths = set(baseline.key())
+    baseline_paths = set(baseline.keys())
     current_paths = set(current.keys())
    
+    new_paths = current_paths - baseline_paths
+    deleted_paths = baseline_paths - current_paths
 
+    common_paths = baseline_paths & current_paths
+    modified = []
+    unreadable = []
+
+    for path in common_paths:
+        b_sha = baseline[path]["sha256"]
+        c_sha = current[path]["sha256"]
+
+        if b_sha is None or c_sha is None:
+            unreadable.append(path)
+        elif b_sha != c_sha:
+            modified.append(path)
+
+    new_list = sorted(new_paths)
+    deleted_list = sorted(deleted_paths)
+    modified_list = sorted(modified)
+    unreadable_list = sorted(unreadable)
+
+    with open("results.txt", "w", encoding="utf-8") as f:
+       
+        
 
     
