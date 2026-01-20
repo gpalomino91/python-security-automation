@@ -84,8 +84,11 @@ def check():
     modified_list = sorted(modified)
     unreadable_list = sorted(unreadable)
 
+def results():
+    
+
     with open("results.txt", "w", encoding="utf-8") as f:
-       
+    
         
 
     
